@@ -37,7 +37,7 @@ jobs:
 
     - name: Upload artifacts
       if: success()
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: esp32-build-artifacts
         path: src/build/
