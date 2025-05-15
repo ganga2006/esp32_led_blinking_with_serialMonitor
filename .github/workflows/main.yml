@@ -20,7 +20,7 @@ jobs:
           python-version: '3.11'
 
       - name: Set up ESP-IDF
-        uses: espressif/setup-idf@v2.8
+        uses: espressif/setup-idf@v5.3.3
         with:
           version: v5.1
 
