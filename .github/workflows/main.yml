@@ -1,8 +1,10 @@
-name: Build ESP32 Firmware
+name: ESP32 Build
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
+  pull_request:
 
 jobs:
   build:
@@ -12,19 +14,25 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
       - name: Set up ESP-IDF
-        uses: espressif/setup-idf@v2
+        uses: espressif/setup-idf@v1
         with:
           version: v5.1
 
-      - name: Build firmware
-        run: |
-          . $IDF_PATH/export.sh
-          idf.py build
-        working-directory: .
+      - name: Install dependencies
+        run: idf.py install
 
-      - name: Upload binaries
-        uses: actions/upload-artifact@v4
+      - name: Build the firmware
+        run: idf.py build
+
+      - name: Upload firmware
+        uses: actions/upload-artifact@v3
         with:
-          name: esp32-firmware
+          name: esp32-bin
           path: build/*.bin
+
