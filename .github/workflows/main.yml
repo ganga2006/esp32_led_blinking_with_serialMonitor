@@ -30,6 +30,9 @@ jobs:
         cd ~/esp-idf
         ./install.sh
 
+    - name: Set up ESP-IDF environment
+      run: echo ". ~/esp-idf/export.sh" >> $GITHUB_ENV
+
     - name: Build Project
       run: |
         . ~/esp-idf/export.sh
