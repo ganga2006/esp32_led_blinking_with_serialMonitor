@@ -13,7 +13,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Set up ESP-IDF
-        uses: espressif/setup-idf@v1
+        uses: espressif/setup-idf@v2
         with:
           version: v5.1
 
@@ -24,7 +24,7 @@ jobs:
         working-directory: .
 
       - name: Upload binaries
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: esp32-firmware
           path: build/*.bin
